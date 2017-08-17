@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :posts
   get 'friends/my'
   get 'friends/friended_by'
 
@@ -24,6 +25,6 @@ Rails.application.routes.draw do
   resources :users
 
   root 'home#index'
-
+  post "toggle_like" => "likes#toggle"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

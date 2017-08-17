@@ -1,7 +1,10 @@
 <div class="card user-<%= user.gender %>">
   <div class="card-content">
     <article class="media">
-      <figure class="media-left"><%= image_tag user.image_url_or_default %></figure>
+      <figure class="media-left">
+      <p class="image is-64x64">
+      <%= image_tag user.image_url_or_default %></figure>
+      </p>
       <div class="media-content">
         <div>
           <div class="field">

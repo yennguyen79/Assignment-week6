@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
-
+  has_many :posts, foreign_key: "poster_id", dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
   has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"
   mount_uploader :avatar, AvatarUploader
@@ -91,5 +92,16 @@ class User < ApplicationRecord
 
   def male?
     gender == "male"
+  end
+
+  def toggle_like!(item)
+    if like = likes.where(item: item).first
+      like.destroy
+    else 
+      likes.where(item: item).create!
+    end
+  end
+  def liking?(item)
+    likes.where(item: item).exists?
   end
 end

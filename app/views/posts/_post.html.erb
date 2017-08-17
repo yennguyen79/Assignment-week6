@@ -1,0 +1,38 @@
+<div class="post card">
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <p class="image is-32x32">
+            <img src="https://assets-0.huggies-cdn.net/system/assets/6401/normal/Bathingbaby2_normal.jpg" alt="Twitter square">
+          </p>
+        </div>
+        <div class="media-content">
+          <p class="is-title">
+            <strong><%= link_to post.poster_id  %></strong>
+          </p>
+          <small><%= time_ago_in_words post.updated_at %> ago</small>
+        </div>
+      </div>
+      <div class="content">
+        <%= post.body %>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <%= link_to fa_icon("thumbs-up", text: "Like"), toggle_like_path(post_id: post.id),
+             class: "level-item button is-white #{'is-liked' if current_user.liking?(post)}", method: 'post' %>
+          </div>
+          <div class="level-item">
+            <%= link_to fa_icon("comments", text: "Comment"), "/", class: "level-item button is-white" %>
+          </div>
+        </div>
+      </div>
+      <div class="cart-footer">
+      <%= display_likers(post) %>
+    </div>
+  </div>
+
+
+
