@@ -4,6 +4,11 @@
     <div class="card user-card">
       <div class="card-content">
         <%= form_for @user do |f| %>
+        <div class="field">
+          <%= f.label :avatar, class: "label" %>
+          <div class="control"><%= f.file_field :avatar, class: "input" %></div>
+        </div>
+
           <div class="field">
             <div class="label">Name</div>
             <div class="control">

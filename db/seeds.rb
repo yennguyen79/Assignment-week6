@@ -7,4 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.generate_users(5, "male")
+User.generate_users(5, "female")User.generate_users(5, "male")
 User.generate_users(5, "female")
