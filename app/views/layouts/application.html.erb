@@ -38,7 +38,7 @@
           </div>
           <div class="navbar-end">
             <% if current_user %>
-              <%= link_to profile_path, class: "navbar-item" do %>
+              <%= link_to posts_path, class: "navbar-item" do %>
                 <%= image_tag current_user.image_url_or_default %>
                 &nbsp;<%= current_user.name %>
               <% end %>
@@ -47,11 +47,13 @@
                 <a href="<%= users_path %>" class="navbar-link">
                   <%= icon("users", "Friends") %>
                 </a>
+                
                 <div class="navbar-dropdown">
                   <%= link_to "My Friends", friends_my_path, class: "navbar-item" %>
                   <%= link_to "Friended By", friends_friended_by_path, class: "navbar-item" %>
                 </div>
               </div>
+              <%= link_to icon("fa fa-cogs", "Setting"), profile_path, class: "navbar-item" %>
 
               <%= link_to icon("comments-o", "Messages"), messages_path, class: "navbar-item" %>
               <%= link_to icon("sign-out", "Log out"), logout_path, class: "navbar-item" %>
