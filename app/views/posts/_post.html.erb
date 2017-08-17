@@ -25,7 +25,7 @@
              class: "level-item button is-white #{'is-liked' if current_user.liking?(post)}", method: 'post' %>
           </div>
           <div class="level-item">
-            <%= link_to fa_icon("comments", text: "Comment"), "/", class: "level-item button is-white" %>
+            <%= link_to fa_icon("comments", text: "Comment"), posts_path, class: "level-item button is-white" %>
           </div>
         </div>
       </div>

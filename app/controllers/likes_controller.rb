@@ -8,6 +8,6 @@ class LikesController < ApplicationController
     end
 
     current_user.toggle_like!(item)      
-    redirect_to root_path
+    redirect_to posts_path
   end
 end

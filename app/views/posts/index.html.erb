@@ -1,11 +1,15 @@
 <%= form_for current_user.posts.build do |f| %>
- <div class="post">
-   <div class="textarea">
-     <%= f.text_area :body, class: "textarea" %>
-   </div>
-   <div class="control">
-     <%= f.submit "Post", class: "button is-primary" %>
-   </div>
- </div>
+<div class="card">
+  <div class="card-content">
+    <div class="post">
+      <div class="field">
+        <%= f.text_area :body, class: "textarea" , placeholder: "Write something" %>
+        </div>
+        <div class="control">
+        <%= f.submit "Post", class: "button is-primary" %>
+      </div>
+    </div>
+  </div>
+</div> 
 <% end %>
 <%= render @posts %>
