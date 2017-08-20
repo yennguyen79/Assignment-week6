@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new post_params
     @post.poster = current_user
+    # @post.wall_user = current_user
     if @post.save
       flash[:success] = "Success in creating post"
     else
