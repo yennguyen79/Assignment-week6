@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :comments
-
+    resources :comments
+  
+  
   resources :posts
   get 'friends/my'
   get 'friends/friended_by'
