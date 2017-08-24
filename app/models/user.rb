@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   validates :name, :email, presence: true
   has_secure_password
-
+ 
   def self.from_omniauth(auth)
     # Check out the Auth Hash function at https://github.com/mkdynamic/omniauth-facebook#auth-hash
     # and figure out how to get email for this user.
@@ -46,6 +46,10 @@ class User < ApplicationRecord
     friends.include?(another_user)
   end
 
+  def self.autocomplete(name)
+    User.where("name ILIKE ? ", "%#{name}%")
+  end
+
   def self.generate_users(n = 5, gender = "female")
     url = "https://randomuser.me/api?results=#{n}&gender=#{gender}"
     body = HTTP.get(url).parse
@@ -58,6 +62,13 @@ class User < ApplicationRecord
       User.create! hash
     end
   end
+
+  def self.random_user
+    random_index = rand(User.count)
+    User.offset(random_index).first
+  end
+
+
 
   # EXPLANATION[]
   # def friends
@@ -102,7 +113,13 @@ class User < ApplicationRecord
       likes.where(item: item).create!
     end
   end
+
   def liking?(item)
     likes.where(item: item).exists?
   end
+
+  def image_url_or_default
+    image_url.present? ? image_url : "https://assets-0.huggies-cdn.net/system/assets/6401/normal/Bathingbaby2_normal.jpg"
+  end
+
 end

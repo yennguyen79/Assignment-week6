@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :posts do 
+    get :paging, on: :collection
+  end 
+ 
   get "friends" => "friends#index"
   get "profile" => "users#edit"
   # NOTE: /auth/facebook is supported by the omniauth-facebook gem
@@ -25,7 +29,11 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
-  resources :users
+
+  
+  resources :users do
+    get :search,  on: :collection
+end
 
   root 'home#index'
   post "toggle_like" => "likes#toggle"

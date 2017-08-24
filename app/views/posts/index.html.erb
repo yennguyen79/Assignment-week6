@@ -1,15 +1,24 @@
-<%= form_for current_user.posts.build do |f| %>
-<div class="card">
-  <div class="card-content">
-    <div class="post">
-      <div class="field">
-        <%= f.text_area :body, class: "textarea" , placeholder: "Write something" %>
+<% if current_user %>
+  <%= form_for current_user.posts.build do |f| %>
+
+  <div class="card">
+    <div class="card-content">
+      <div class="post">
+        <div class="field">
+          <%= f.text_area :body, class: "textarea" , placeholder: "Write something" %>
+          </div>
+          <div class="control">
+          <%= f.submit "Post", class: "button is-primary" %>
         </div>
-        <div class="control">
-        <%= f.submit "Post", class: "button is-primary" %>
       </div>
     </div>
-  </div>
-</div> 
+  </div> 
+  <% end %>
 <% end %>
-<%= render @posts %>
+  <div class"js-posts">
+  <%= render @posts %>
+  </div>
+<div class="pagination" data-pagination-endpoint="<%= paging_posts_path %>" data-pagination-pages="<%= @posts.total_pages %>">
+  <i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="margin: auto"></i>
+  loading........
+</div>

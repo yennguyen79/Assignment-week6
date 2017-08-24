@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   
   def index
-    @posts = Post.all.order("updated_at DESC")
+    @posts = Post.order("updated_at DESC").page(1).per(10)
+    
   end
  
   def new
@@ -20,7 +21,22 @@ class PostsController < ApplicationController
 
     redirect_to posts_path  
   end
- 
+  
+    def paging
+      params[:per] ||= 10
+      @posts = Post.order("updated_at DESC").page(params[:page]).per(params[:per])
+      
+      render partial: 'post', collection: @posts, layout: false
+    end
+  
+    def show
+    @post = Post.find params[:id]
+    respond_to do |format|
+      format.html
+      format.json
+      end
+    end
+   
   private 
 
   def post_params

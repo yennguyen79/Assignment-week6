@@ -3,21 +3,23 @@
       <div class="media">
         <div class="media-left">
           <p class="image is-32x32">
-            <img src="https://assets-0.huggies-cdn.net/system/assets/6401/normal/Bathingbaby2_normal.jpg" alt="Twitter square">
+            <%= image_tag post.poster.image_url_or_default %>
           </p>
         </div>
         <div class="media-content">
           <p class="is-title">
             <strong><%= link_to post.poster.name  %></strong>
+          
+            <%= mentions_text(post) %>
           </p>
           <small><%= time_ago_in_words post.updated_at %> ago</small>
         </div>
       </div>
       <div class="footer">
-<% post.comments.each do |comment| %>
-  <%= comment.body %>
-  <% end %>
-</div>
+        <% post.comments.each do |comment| %>
+          <%= comment.body %>
+          <% end %>
+        </div>
       <div class="content">
         <%= post.body %>
       </div>
@@ -43,11 +45,8 @@
 
         </div>
       </div>
-      <div class="cart-footer">
-      <%= display_likers(post) %>
-      </div>
-    </div>
-    </div>
+      
+</div>
 
 
 
